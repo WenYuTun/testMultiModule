@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--使用jdbc的userGeneratedKeys获取数据的自增主键值-->
+        <!--<setting name="userGeneratedKeys" value="true"></setting>-->
+        <!--使用列表标签替换列别名 默认：true-->
+        <setting name="useColumnLabel" value="true"></setting>
+        <!--开启驼峰命名转化：Table（）create_time -> Entity(createTime)-->
+        <setting name="mapUnderscoreToCamelCase" value="true"></setting>
+    </settings>
+    <!--pagehelper分页插件配置项-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="mysql"/>
+            <property name="offsetAsPageNum" value="false"/>
+            <property name="rowBoundsWithCount" value="false"/>
+            <property name="pageSizeZero" value="true"/>
+            <property name="reasonable" value="false"/>
+            <property name="supportMethodsArguments" value="false"/>
+            <property name="returnPageInfo" value="none"/>
+        </plugin>
+    </plugins>
+
+</configuration>

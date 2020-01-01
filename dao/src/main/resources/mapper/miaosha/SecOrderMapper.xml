@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.supermap.testMultiModule.dao.miaosha.SecOrderMapper">
+    <resultMap id="BaseResultMap" type="com.supermap.testMultiModule.pojo.miaosha.SecOrder">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="product_id" property="productId" jdbcType="VARCHAR"/>
+        <result column="product_price" property="productPrice" jdbcType="DECIMAL"/>
+        <result column="amount" property="amount" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from sec_order
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.supermap.testMultiModule.pojo.miaosha.SecOrder">
+        insert into sec_order (id, user_id, product_id,
+          product_price, amount)
+        values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR},
+          #{productPrice,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.supermap.testMultiModule.pojo.miaosha.SecOrder">
+        update sec_order
+        set user_id = #{userId,jdbcType=VARCHAR},
+          product_id = #{productId,jdbcType=VARCHAR},
+          product_price = #{productPrice,jdbcType=DECIMAL},
+          amount = #{amount,jdbcType=DECIMAL}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByKey" parameterType="com.supermap.testMultiModule.pojo.miaosha.SecOrder">
+        update sec_order
+        <trim prefix="set" suffixOverrides=",">
+            <if test="user_id != null and user_id != ''">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="product_id != null and product_id != ''">
+                product_id = #{productId,jdbcType=VARCHAR},
+            </if>
+            <if test="product_price != null">
+                product_price = #{productPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DECIMAL}
+            </if>
+        </trim>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select id, user_id, product_id, product_price, amount
+        from sec_order
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id, user_id, product_id, product_price, amount
+        from sec_order
+    </select>
+
+    <select id="selectByProductId" resultMap="BaseResultMap">
+        select id, user_id, product_id, product_price, amount
+        from sec_order
+        where product_id = #{productId,jdbcType=VARCHAR}
+    </select>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.supermap.testMultiModule.dao.miaosha.ProductInfoMapper">
+    <resultMap id="BaseResultMap" type="com.supermap.testMultiModule.pojo.miaosha.ProductInfo">
+        <id column="product_id" property="productId" jdbcType="VARCHAR"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="product_price" property="productPrice" jdbcType="DECIMAL"/>
+        <result column="product_stock" property="productStock" jdbcType="INTEGER"/>
+        <result column="product_description" property="productDescription" jdbcType="VARCHAR"/>
+        <result column="product_icon" property="productIcon" jdbcType="VARCHAR"/>
+        <result column="product_status" property="productStatus" jdbcType="INTEGER"/>
+        <result column="category_type" property="categoryType" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="update_time" property="updateTime" jdbcType="DATE"/>
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from product_info
+        where product_id = #{productId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.supermap.testMultiModule.pojo.miaosha.ProductInfo">
+        insert into product_info (product_id, product_name, product_price,
+          product_stock, product_description, product_icon,
+          product_status, category_type, create_time,
+          update_time)
+        values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productPrice,jdbcType=DECIMAL},
+          #{productStock,jdbcType=INTEGER}, #{productDescription,jdbcType=VARCHAR}, #{productIcon,jdbcType=VARCHAR},
+          #{productStatus,jdbcType=INTEGER}, #{categoryType,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},
+          #{updateTime,jdbcType=DATE})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.supermap.testMultiModule.pojo.miaosha.ProductInfo">
+        update product_info
+        set product_name = #{productName,jdbcType=VARCHAR},
+          product_price = #{productPrice,jdbcType=DECIMAL},
+          product_stock = #{productStock,jdbcType=INTEGER},
+          product_description = #{productDescription,jdbcType=VARCHAR},
+          product_icon = #{productIcon,jdbcType=VARCHAR},
+          product_status = #{productStatus,jdbcType=INTEGER},
+          category_type = #{categoryType,jdbcType=VARCHAR},
+          create_time = #{createTime,jdbcType=DATE},
+          update_time = #{updateTime,jdbcType=DATE}
+        where product_id = #{productId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select product_id, product_name, product_price, product_stock, product_description,
+        product_icon, product_status, category_type, create_time, update_time
+        from product_info
+        where product_id = #{productId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select product_id, product_name, product_price, product_stock, product_description,
+        product_icon, product_status, category_type, create_time, update_time
+        from product_info
+    </select>
+
+    <update id="updateByKey">
+        update product_info
+        <trim prefix="set" suffixOverrides=",">
+            <if test="product_name != null and product_name != ''">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="product_price != null">
+                product_price = #{productPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="product_stock != null">
+                product_stock = #{productStock,jdbcType=INTEGER},
+            </if>
+            <if test="product_description != null and product_description != ''">
+                product_description = #{productDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="product_icon != null and product_icon != ''">
+                product_icon = #{productIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="product_status != null">
+                product_status = #{productStatus,jdbcType=INTEGER},
+            </if>
+            <if test="category_type != null and category_type != ''">
+                category_type = #{categoryType,jdbcType=VARCHAR},
+            </if>
+            <if test="create_time != null">
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="update_time != null">
+                update_time = #{updateTime,jdbcType=DATE}
+            </if>
+        </trim>
+        where product_id = #{productId,jdbcType=VARCHAR}
+    </update>
+</mapper>
