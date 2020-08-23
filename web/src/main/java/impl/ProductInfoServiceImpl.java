@@ -1,4 +1,4 @@
-package com.supermap.testMultiModule.service.impl;
+package impl;
 
 import com.supermap.testMultiModule.pojo.miaosha.ProductInfo;
 import com.supermap.testMultiModule.service.ProductInfoService;

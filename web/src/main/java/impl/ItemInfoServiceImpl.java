@@ -1,4 +1,4 @@
-package com.supermap.testMultiModule.service.impl;
+package impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -59,6 +59,10 @@ public class ItemInfoServiceImpl implements ItemInfoService {
         return new PageInfo(itemInfos);
     }
 
+    @Override
+    public Integer batchInsert(List<ItemInfo> itemInfos) {
+        return itemInfoMapper.batchInsert(itemInfos);
+    }
 
 
 }

@@ -37,6 +37,12 @@ public interface ItemInfoService {
      */
     PageInfo selectItemInfoByPage(Integer pageIndex, Integer pageSize);
 
+    /**
+     * 批量插入
+     * @return
+     */
+    Integer batchInsert(List<ItemInfo> itemInfos);
+
 
 }
 

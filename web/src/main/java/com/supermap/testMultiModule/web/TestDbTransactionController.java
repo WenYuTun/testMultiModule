@@ -66,24 +66,4 @@ public class TestDbTransactionController {
     }
 
 
-    /**
-     * 测试手动事务提交
-     *
-     * @param addItemInfoReq
-     * @return
-     */
-    @PostMapping("/item/insert")
-    public ResponseJsonData testRollback(@RequestBody AddItemInfoReq addItemInfoReq) {
-        //校验入参
-        ValidationResult validate = validator.validate(addItemInfoReq);
-        if (validate.isHasErrors()) {
-            throw new RuntimeException(validate.getErrorMsg());
-        }
-        Integer result = itemService.insertItem(addItemInfoReq);
-        if (result > 0) {
-            return ResponseJsonData.ok("更新成功");
-        }
-        return ResponseJsonData.ok("更新失败");
-    }
-
 }

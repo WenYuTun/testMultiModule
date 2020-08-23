@@ -1,4 +1,4 @@
-package com.supermap.testMultiModule.service.impl;
+package impl;
 
 import com.supermap.testMultiModule.component.RedisLock;
 import com.supermap.testMultiModule.dto.miaosha.SecProductInfo;

@@ -17,4 +17,6 @@ public interface ItemInfoMapper {
     List<ItemInfo> selectAll();
 
     int updateByPrimaryKey(ItemInfo record);
+
+    Integer batchInsert(List<ItemInfo> itemInfos);
 }
